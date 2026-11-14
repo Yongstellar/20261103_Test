@@ -201,7 +201,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 284289786}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693774411}
+        m_TargetAssemblyTypeName: SelectManager, Assembly-CSharp
+        m_MethodName: DeleteSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &284289786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,7 +599,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   menu: {fileID: 1882027399}
-  menuOffset: {x: 90, y: 60}
+  menuOffset: {x: 70, y: 40}
 --- !u!4 &693774412
 Transform:
   m_ObjectHideFlags: 0
@@ -1028,7 +1040,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 62378b31dbfe95942b89e8b4f6bd4ef0, type: 2}
   - {fileID: 11400000, guid: 693664ec0cfac884f95aaca3687c6ae8, type: 2}
   - {fileID: 11400000, guid: dd8c687a8553ee6498204989ab76f064, type: 2}
-  logEvents: 1
+  logEvents: 0
 --- !u!1 &1408833615
 GameObject:
   m_ObjectHideFlags: 0

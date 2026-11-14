@@ -30,6 +30,8 @@ public class SelectManager : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
             HandleClick();
+        if (selected == null && menu.gameObject.activeSelf)
+            menu.gameObject.SetActive(false);
     }
 
     private void LateUpdate()
@@ -71,5 +73,12 @@ public class SelectManager : MonoBehaviour
     {
         selected = null;
         menu.gameObject.SetActive(false);
+    }
+    public void DeleteSelected()
+    {
+        if (selected != null)
+            selected.Remove();
+
+        Deselect();
     }
 }
