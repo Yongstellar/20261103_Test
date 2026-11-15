@@ -9,6 +9,8 @@ public class PlacementManager : MonoBehaviour
 
     [SerializeField] private LayerMask groundMask;
 
+    [SerializeField] private float hoverHeight = 1.5f;  //懸浮高度
+
     private GameObject ghost;  //Null狀態
 
     private void Awake()
@@ -42,7 +44,7 @@ public class PlacementManager : MonoBehaviour
 
         if (TryGetGroundPoint(e, out Vector3 point))
         {
-            ghost.transform.position = point;
+            ghost.transform.position = point + Vector3.up * hoverHeight;
             ghost.SetActive(true);
         }
         else

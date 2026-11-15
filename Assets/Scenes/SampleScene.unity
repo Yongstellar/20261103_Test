@@ -550,6 +550,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  hoverHeight: 1.5
 --- !u!4 &475290546
 Transform:
   m_ObjectHideFlags: 0
