@@ -11,7 +11,9 @@ public class SelectManager : MonoBehaviour
 
     [SerializeField] private RectTransform menu;
 
-    [SerializeField] private Vector2 menuOffset = new Vector2(120f, 0f);
+    [SerializeField] private Vector2 menuGap = new Vector2(40f, 0f);
+
+    private Canvas canvas;
 
     private PlaceableProp selected;
 
@@ -19,10 +21,13 @@ public class SelectManager : MonoBehaviour
     {
         if (targetCamera == null)
             targetCamera = Camera.main;
+        //尋找上層的Canvas
+        canvas = menu.GetComponentInParent<Canvas>().rootCanvas;
     }
 
     private void Start()
     {
+        menu.pivot = new Vector2(0f, 0.5f);
         menu.gameObject.SetActive(false);
     }
 
@@ -39,7 +44,9 @@ public class SelectManager : MonoBehaviour
         if (selected != null)
         {
             Vector3 screenPos = targetCamera.WorldToScreenPoint(selected.transform.position);
-            menu.position = screenPos + (Vector3)menuOffset;
+            //跟隨Canvas間距變化
+            Vector3 gap = (Vector3)menuGap * canvas.scaleFactor;
+            menu.position = screenPos + gap;
         }
     }
 

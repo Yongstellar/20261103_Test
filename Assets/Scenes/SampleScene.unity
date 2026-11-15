@@ -599,7 +599,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   menu: {fileID: 1882027399}
-  menuOffset: {x: 70, y: 40}
+  menuGap: {x: 40, y: 0}
 --- !u!4 &693774412
 Transform:
   m_ObjectHideFlags: 0
