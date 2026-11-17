@@ -13,12 +13,20 @@ public class PlacementManager : MonoBehaviour
 
     private GameObject ghost;  //Null狀態
 
+    [Header("Guide")]
+    
+    [SerializeField] private LineRenderer guideLine;
+
+
     private void Awake()
     {
         if (targetCamera == null)
             targetCamera = Camera.main;
     }
-
+    private void Start()
+    {
+        SetGuideVisible(false);
+    }
     private void OnEnable()
     {
         dropdown.DragBegan += OnDragBegan;
@@ -44,18 +52,27 @@ public class PlacementManager : MonoBehaviour
 
         if (TryGetGroundPoint(e, out Vector3 point))
         {
-            ghost.transform.position = point + Vector3.up * hoverHeight;
+            Vector3 hoverPos = point + Vector3.up * hoverHeight;
+            ghost.transform.position = hoverPos;
             ghost.SetActive(true);
+
+            guideLine.SetPosition(0, hoverPos);
+            guideLine.SetPosition(1, point);
+
+            SetGuideVisible(true);
         }
         else
         {
             ghost.SetActive(false);
+            SetGuideVisible(false);
         }
     }
     private void OnDragEnded(Proplist data, PointerEventData e)
     {
         if (ghost != null)
             Destroy(ghost);
+
+        SetGuideVisible(false);
 
         if (!TryGetGroundPoint(e, out Vector3 point)) return;
 
@@ -65,7 +82,10 @@ public class PlacementManager : MonoBehaviour
         if (prop == null) prop = obj.AddComponent<PlaceableProp>();
         prop.Initialize(data);
     }
-
+    private void SetGuideVisible(bool visible)
+    {
+        if (guideLine != null) guideLine.gameObject.SetActive(visible);
+    }
     private bool TryGetGroundPoint(PointerEventData e, out Vector3 point)
     {
         point = Vector3.zero;
