@@ -17,6 +17,9 @@ public class PlacementManager : MonoBehaviour
     
     [SerializeField] private LineRenderer guideLine;
 
+    [SerializeField] private Transform mark;
+
+    [SerializeField] private float markLift = 0.05f;
 
     private void Awake()
     {
@@ -59,6 +62,7 @@ public class PlacementManager : MonoBehaviour
             guideLine.SetPosition(0, hoverPos);
             guideLine.SetPosition(1, point);
 
+            mark.position = point + Vector3.up * markLift;
             SetGuideVisible(true);
         }
         else
@@ -85,6 +89,7 @@ public class PlacementManager : MonoBehaviour
     private void SetGuideVisible(bool visible)
     {
         if (guideLine != null) guideLine.gameObject.SetActive(visible);
+        if (mark != null) mark.gameObject.SetActive(visible);
     }
     private bool TryGetGroundPoint(PointerEventData e, out Vector3 point)
     {
